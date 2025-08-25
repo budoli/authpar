@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService{
     public UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO) {
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
-        user.updateInfo(userRequestDTO.getName(), userRequestDTO.getEmail());
+        user.updateInfo(userRequestDTO.getName(), userRequestDTO.getEmail(), userRequestDTO.getPassword());
         userRepository.save(user);
         return new UserResponseDTO(user);
     }
